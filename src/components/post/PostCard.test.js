@@ -6,6 +6,7 @@ import PostCard, { NonHocPostCard } from './PostCard'
 
 const defaultProps = {
   post: {
+    id: 1,
     title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
     body: 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
   },
@@ -62,4 +63,20 @@ describe('renders', () => {
 })
 test('does not throw warning with expected props', () => {
   checkProps(PostCard, defaultProps)
+})
+test('calls `viewDetailPost` with non-empty arguments when view detail post button clicked', () => {
+  const props = {
+    history: []
+  }
+  const wrapper = setup(props)
+  
+  const postUserCard = findByTestAttr(wrapper, 'component-post-card')
+  const actions = postUserCard.prop('actions')
+  const viewDetailPostBtn = actions.find(item => {
+    return item.props.children.props['data-test'] == 'view-detail-post-button'
+  })
+  viewDetailPostBtn.props.children.props['onClick']()
+
+  const receivedHistoryProps = wrapper.instance().props.history[0]
+  expect(receivedHistoryProps).toBe(`post-detail/${defaultProps.post.id}`)
 })
