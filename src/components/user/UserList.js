@@ -1,26 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Row, Col } from 'antd'
-import UserCard from './UserCard'
 
-class UserList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      users: [
-        {
-          id: 1,
-          fullName: "Leanne Graham",
-          email: "Sincere@april.biz",
-          phone: "1-770-736-8031 x56442",
-        },
-        {
-          id: 2,
-          fullName: "Ervin Howell",
-          email: "Shanna@melissa.tv",
-          phone: "010-692-6593 x09125",
-        },
-      ]
-    }
+import UserCard from './UserCard'
+import { getUserList } from '../../store/actions/userActions'
+
+export class UnconnectedUserList extends React.Component {
+  componentDidMount() {
+    this.props.getUserList()
   }
   render() {
     return (
@@ -29,8 +16,12 @@ class UserList extends React.Component {
         style={{ background: '#ECECEC', padding: '30px' }}
       >
         <Row gutter={16}>
-          { this.state.users && this.state.users.map(user => (
-            <Col span={8}>
+          { this.props.userList && this.props.userList.map(user => (
+            <Col 
+              span={8} 
+              key={user.id}
+              data-test="user-list"
+            >
               <UserCard user={user}/>
             </Col>
           )) }
@@ -40,4 +31,14 @@ class UserList extends React.Component {
   }
 }
 
-export default UserList
+const mapStateToProps = (state) => {
+  return {
+    userList: state.user.userList
+  }
+}
+
+const actions = {
+  getUserList,
+}
+
+export default connect(mapStateToProps, actions)(UnconnectedUserList)

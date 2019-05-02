@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Icon, Tooltip } from 'antd'
+import { withRouter } from 'react-router-dom'
 
 
 import UserDetail from './UserDetail'
@@ -69,4 +70,4 @@ UserCard.propTypes = {
   })
 }
 
-export default UserCard
+export default withRouter(UserCard)
