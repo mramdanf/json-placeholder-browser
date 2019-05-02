@@ -4,7 +4,7 @@ export default (state={}, action) => {
     case actionTypes.SET_USER_LIST:
       return {
         ...state,
-        userList: action.payload.userList,
+        userList: action.payload,
       }
     default:
       return state
