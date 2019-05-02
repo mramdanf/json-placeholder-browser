@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from 'antd'
 
-const UserDetailComponent = (props) => {
+const UserDetail = (props) => {
 	return (
 		<div data-test="component-user-detail">
 			<div data-test="user-fullname">
-				<Icon type="user" /> {props.fullName}
+				<Icon type="user" /> {props.name}
 			</div>
 			<div data-test="user-email">
 				<Icon type="mail" /> {props.email}
@@ -18,10 +18,10 @@ const UserDetailComponent = (props) => {
 	)
 }
 
-UserDetailComponent.propTypes = {
-	fullName: PropTypes.string.isRequired,
+UserDetail.propTypes = {
+	name: PropTypes.string.isRequired,
 	email: PropTypes.string.isRequired,
 	phone: PropTypes.string.isRequired,
 }
 
-export default UserDetailComponent
+export default UserDetail

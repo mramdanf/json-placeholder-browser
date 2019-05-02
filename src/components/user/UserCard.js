@@ -20,7 +20,7 @@ class UserCard extends React.Component {
         style={{ width: 300 }}
         cover={
           <img 
-            alt={this.props.user.fullName} 
+            alt={this.props.user.name} 
             src={UserAvatar}
           />
         }
@@ -51,7 +51,7 @@ class UserCard extends React.Component {
       >
         <UserDetail 
           data-test="user-detail"
-          fullName={this.props.user.fullName}
+          name={this.props.user.name}
           email={this.props.user.email}
           phone={this.props.user.phone}
         />
@@ -63,7 +63,7 @@ class UserCard extends React.Component {
 UserCard.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    fullName: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   })

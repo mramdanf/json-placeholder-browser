@@ -7,7 +7,7 @@ import { findByTestAttr, checkProps } from '../../appUtils'
 const defaultProps = {
   user: {
     id: 1,
-    fullName: 'Ramdan',
+    name: 'Ramdan',
     email: 'mramdanf@gmail.com',
     phone: '08458947377',
   },

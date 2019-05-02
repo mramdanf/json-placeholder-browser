@@ -54,9 +54,8 @@ test('returns { userList:[...] } when receiving an action of type `SET_USER_LIST
   },]
   const action = {
     type: actionTypes.SET_USER_LIST,
-    payload: {
-      userList
-    }
+    payload: userList
+    
   }
   const newState = userReducer(undefined, action)
   expect(newState).toEqual({ userList })
