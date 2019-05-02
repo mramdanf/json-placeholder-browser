@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import UserCard from './UserCard'
+import UserCard, { NonHocUserCard } from './UserCard'
 import { findByTestAttr, checkProps } from '../../appUtils'
 
 const defaultProps = {
@@ -15,7 +15,7 @@ const defaultProps = {
 
 const setup = (initialProps={}) => {
   const setupProps = { ...defaultProps, ...initialProps }
-  return shallow(<UserCard {...setupProps} />)
+  return shallow(<NonHocUserCard {...setupProps} />)
 }
 
 describe('renders', () => {

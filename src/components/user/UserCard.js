@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 import UserDetail from './UserDetail'
 import UserAvatar from '../../images/boy.png'
 
-class UserCard extends React.Component {
+export class NonHocUserCard extends React.Component {
   handleViewUserPostClick = () => {
     this.props.history.push(`user-posts/${this.props.user.id}`)
   }
@@ -61,7 +61,7 @@ class UserCard extends React.Component {
   }
 }
 
-UserCard.propTypes = {
+NonHocUserCard.propTypes = {
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
@@ -70,4 +70,4 @@ UserCard.propTypes = {
   })
 }
 
-export default withRouter(UserCard)
+export default withRouter(NonHocUserCard)
