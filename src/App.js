@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import UserList from './components/user/UserList'
 import PostList from './components/post/PostList'
 import AlbumList from './components/album/AlbumList'
+import PhotoList from './components/photo/PhotoList'
 import './App.css';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
           <Route exact path='/' component={UserList} />
           <Route path='/user-posts/:id' component={PostList} />
           <Route path='/user-albums/:id' component={AlbumList} />
+          <Route path='/album-photos/:id' component={PhotoList} />
         </Switch>
       </BrowserRouter>
     );

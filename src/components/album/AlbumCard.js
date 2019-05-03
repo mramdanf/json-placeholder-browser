@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 export class NonHocAlbumCard extends React.Component {
   handlePhotosOfAlbumClick = () => {
-    this.props.history.push(`photos/${this.props.album.id}`)
+    this.props.history.push(`/album-photos/${this.props.album.id}`)
   }
   render() {
     return (

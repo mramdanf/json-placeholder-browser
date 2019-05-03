@@ -33,7 +33,7 @@ export class NonHocPhotoCard extends React.Component {
           ]
         }
       >
-        <h5 data-test="photo-title">{this.props.photo.title}</h5>
+        <h3 data-test="photo-title">{this.props.photo.title}</h3>
       </Card>
     )
   }
