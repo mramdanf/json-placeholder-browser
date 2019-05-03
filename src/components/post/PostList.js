@@ -23,8 +23,6 @@ export class UnConnectedPostList extends React.Component {
             >
               <PostCard 
                 post={post}
-                author={"Ramdan"}
-                commentsCount={10}
                 data-test="post-card"
               />
             </Col>

@@ -36,7 +36,7 @@ export class NonHocAlbumCard extends React.Component {
 NonHocAlbumCard.propTypes = {
   album: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.title,
+    title: PropTypes.string.isRequired,
   }).isRequired
 }
 
