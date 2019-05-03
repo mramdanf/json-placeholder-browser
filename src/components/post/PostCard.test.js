@@ -10,8 +10,6 @@ const defaultProps = {
     title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
     body: 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto',
   },
-  author: 'Ramdan',
-  commentsCount: 10,
   deletePost: () => {}
 }
 
@@ -36,14 +34,6 @@ describe('renders', () => {
   test('renders post content', () => {
     const postContent = findByTestAttr(wrapper, 'post-body')
     expect(postContent.text().length).not.toBe(0)
-  })
-  test('renders post author', () => {
-    const postAuthor = findByTestAttr(wrapper, 'post-author')
-    expect(postAuthor.text().length).not.toBe(0)
-  })
-  test('renders post comments count', () => {
-    const postCommentsCount = findByTestAttr(wrapper, 'post-comments-count')
-    expect(postCommentsCount.text().length).not.toBe(0)
   })
   test('renders view detail post button', () => {
     const componentPostCard = findByTestAttr(wrapper, 'component-post-card')

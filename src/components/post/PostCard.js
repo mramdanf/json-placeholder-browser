@@ -32,7 +32,7 @@ export class NonHocPostCard extends React.Component {
               title="Delete Post"
             >
               <Icon 
-                type="eye" 
+                type="delete" 
                 data-test="delete-post-button"
                 onClick={this.handleDeletePostClick}
               />
@@ -40,9 +40,7 @@ export class NonHocPostCard extends React.Component {
           ]
         }
       >
-        <h5 data-test="post-title">{this.props.post.title}</h5>
-        <span data-test="post-author">{this.props.author}</span>
-        <span data-test="post-comments-count">{this.props.commentsCount}</span>
+        <h3 data-test="post-title">{this.props.post.title}</h3>
         <p data-test="post-body">{this.props.post.body}</p>
       </Card>
     )
@@ -54,9 +52,7 @@ NonHocPostCard.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-  }),
-  author: PropTypes.string.isRequired,
-  commentsCount: PropTypes.number.isRequired,
+  }).isRequired,
   deletePost: PropTypes.func,
 }
 
