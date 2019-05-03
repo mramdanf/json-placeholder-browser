@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import UserList from './components/user/UserList'
-// import PostList from './components/post/PostList'
-import PostCard from './components/post/PostCard'
+import PostList from './components/post/PostList'
 import './App.css';
 
 class App extends Component {
@@ -11,7 +10,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={UserList} />
-          <Route path='/user-posts/:id' component={PostCard} />
+          <Route path='/user-posts/:id' component={PostList} />
         </Switch>
       </BrowserRouter>
     );

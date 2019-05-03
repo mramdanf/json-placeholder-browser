@@ -1,9 +1,9 @@
 import axios from 'axios'
 import actionTypes from '../../store/actions/actionTypes'
 
-export const getUserPosts = (user) => {
+export const getUserPosts = (userId) => {
   return (dispatch) => {
-    return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+    return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
       .then(response => {
         dispatch({
           type: actionTypes.SET_USER_POSTS,
@@ -18,7 +18,7 @@ export const deletePost = (postId) => {
     const post = getState().post.postList
     return axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           const newPosts = post.filter(post => post.id !== postId)
           dispatch({
             type: actionTypes.SET_USER_POSTS,

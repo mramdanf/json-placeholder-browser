@@ -28,9 +28,7 @@ describe('post action creator', () => {
     moxios.uninstall()
   })
   test('adds response userPostList to state when getUserPosts action creator called', () => {
-    const user = {
-      id: 1
-    }
+    const userId = 1
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
@@ -40,7 +38,7 @@ describe('post action creator', () => {
       })
     })
 
-    return store.dispatch(getUserPosts(user))
+    return store.dispatch(getUserPosts(userId))
       .then(() => {
         const newState = store.getState()
         expect(newState.post.postList).toBe(postList)

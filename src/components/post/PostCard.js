@@ -40,8 +40,18 @@ export class NonHocPostCard extends React.Component {
           ]
         }
       >
-        <h3 data-test="post-title">{this.props.post.title}</h3>
-        <p data-test="post-body">{this.props.post.body}</p>
+        <h3 data-test="post-title">
+          { this.props.post.title.length <= 50 
+            ? this.props.post.title
+            : this.props.post.title.substring(0,50) + '...'
+           }
+        </h3>
+        <p data-test="post-body">
+          { this.props.post.body.length <= 152
+            ? this.props.post.body
+            : this.props.post.body.substring(0,152) + '...'   
+          }
+        </p>
       </Card>
     )
   }
