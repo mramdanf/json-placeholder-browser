@@ -4,8 +4,11 @@ import { Card, Icon, Tooltip } from 'antd'
 import { withRouter } from 'react-router-dom'
 
 export class NonHocPostCard extends React.Component {
-  handleOnClickViewDetailPost = () => {
+  handleViewDetailPostClick = () => {
     this.props.history.push(`post-detail/${this.props.post.id}`)
+  }
+  handleDeletePostClick = () => {
+    this.props.deletePost(this.props.post.id)
   }
   render() {
     return (
@@ -21,7 +24,7 @@ export class NonHocPostCard extends React.Component {
               <Icon 
                 type="eye" 
                 data-test="view-detail-post-button"
-                onClick={this.handleOnClickViewDetailPost}
+                onClick={this.handleViewDetailPostClick}
               />
             </Tooltip>,
             <Tooltip 
@@ -31,6 +34,7 @@ export class NonHocPostCard extends React.Component {
               <Icon 
                 type="eye" 
                 data-test="delete-post-button"
+                onClick={this.handleDeletePostClick}
               />
             </Tooltip>,
           ]
@@ -53,6 +57,7 @@ NonHocPostCard.propTypes = {
   }),
   author: PropTypes.string.isRequired,
   commentsCount: PropTypes.number.isRequired,
+  deletePost: PropTypes.func,
 }
 
 export default withRouter(NonHocPostCard)

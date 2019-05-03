@@ -12,6 +12,7 @@ const defaultProps = {
   },
   author: 'Ramdan',
   commentsCount: 10,
+  deletePost: () => {}
 }
 
 const setup = (initialProps={}) => {
@@ -79,4 +80,23 @@ test('calls `viewDetailPost` with non-empty arguments when view detail post butt
 
   const receivedHistoryProps = wrapper.instance().props.history[0]
   expect(receivedHistoryProps).toBe(`post-detail/${defaultProps.post.id}`)
+})
+test('calls `deletePost` with postId argument when delete post button clicked', () => {
+  const deletePostMock = jest.fn()
+  const props = {
+    deletePost: deletePostMock
+  }
+
+  const wrapper = setup(props)
+  
+  const componentPostCard = findByTestAttr(wrapper, 'component-post-card')
+  const actionDomProp = componentPostCard.prop('actions')
+  const deletePostBtn = actionDomProp.find(item => {
+    return item.props.children.props['data-test'] == 'delete-post-button'
+  })
+
+  deletePostBtn.props.children.props['onClick']()
+
+  expect(deletePostMock.mock.calls[0][0]).toBe(defaultProps.post.id)
+  
 })
