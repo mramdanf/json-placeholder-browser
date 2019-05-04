@@ -2,7 +2,7 @@ import moxios from 'moxios'
 
 import { storeFactory } from '../../appUtils'
 import { 
-  getPostComments, deleteComment, getCommentDetail, addComment
+  getPostComments, deleteComment, getCommentDetail, addComment, editComment
 } from './commentActions'
 import actionTypes from './actionTypes';
 
@@ -117,6 +117,35 @@ describe('comment action creator', () => {
       })
     })
     return store.dispatch(addComment(newComment))
+      .then(() => {
+        const newState = store.getState()
+        expect(newState.comment.commentList).toEqual(newCommentList)
+      })
+  })
+  test('edit comment', () => {
+    const newComment = {
+      postId: 1,
+      id: 2,
+      name: "xxid labore ex et quam laborum",
+      email: "xxEliseo@gardner.biz",
+      body: "xxlaudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium"
+    }
+    const newCommentList = [
+      ...commentList.filter(comment => comment.id !== newComment.id),
+      newComment,
+    ]
+    store.dispatch({
+      type: actionTypes.SET_POST_COMMENTS,
+      payload: commentList,
+    })
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: newComment,
+      })
+    })
+    return store.dispatch(editComment(newComment, newComment.id))
       .then(() => {
         const newState = store.getState()
         expect(newState.comment.commentList).toEqual(newCommentList)
