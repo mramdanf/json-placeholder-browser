@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 export class NonHocPostCard extends React.Component {
   handleViewDetailPostClick = () => {
-    this.props.history.push(`post-detail/${this.props.post.id}`)
+    this.props.history.push(`/post-detail/${this.props.post.id}`)
   }
   handleDeletePostClick = () => {
     this.props.deletePost(this.props.post.id)
