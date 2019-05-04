@@ -5,7 +5,7 @@ import { Card, Tooltip, Icon } from 'antd';
 
 export class NonHocPhotoCard extends React.Component {
   handleViewPhotoDetailClick = () => {
-    this.props.history.push(`photo-detail/${this.props.photo.id}`)
+    this.props.history.push(`/photo-detail/${this.props.photo.id}`)
   }
   render() {
     return (

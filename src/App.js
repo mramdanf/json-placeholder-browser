@@ -4,6 +4,7 @@ import UserList from './components/user/UserList'
 import PostList from './components/post/PostList'
 import AlbumList from './components/album/AlbumList'
 import PhotoList from './components/photo/PhotoList'
+import PhotoDetail from './components/photo/PhotoDetail'
 import './App.css';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           <Route path='/user-posts/:id' component={PostList} />
           <Route path='/user-albums/:id' component={AlbumList} />
           <Route path='/album-photos/:id' component={PhotoList} />
+          <Route path='/photo-detail/:id' component={PhotoDetail} />
         </Switch>
       </BrowserRouter>
     );
