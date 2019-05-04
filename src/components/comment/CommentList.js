@@ -2,14 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import CommentCard from './CommentCard'
-import { getPostComments, deleteComment } from '../../store/actions/commentActions'
+import { getPostComments } from '../../store/actions/commentActions'
 
 export class UnconnectedCommentList extends React.Component {
   componentDidMount() {
     this.props.getPostComments(this.props.postId)
-  }
-  handleDeleteCommentClick = (commentId) => {
-    this.props.deleteComment(commentId)
   }
   render() {
     return (
@@ -18,7 +15,6 @@ export class UnconnectedCommentList extends React.Component {
           <CommentCard 
             data-test="comment-card"
             comment={comment}
-            deleteComment={this.handleDeleteCommentClick}
             key={comment.id}
           />
         )) }
@@ -37,4 +33,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { deleteComment, getPostComments })(UnconnectedCommentList)
+export default connect(mapStateToProps, { getPostComments })(UnconnectedCommentList)

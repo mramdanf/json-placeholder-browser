@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Row, Col, Button, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { deleteComment } from '../../store/actions/commentActions'
 
 export class NonHocCommentCard extends React.Component {
   render() {
@@ -62,7 +65,9 @@ NonHocCommentCard.propTypes = {
     email: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }).isRequired,
-  deleteComment: PropTypes.func,
 }
 
-export default withRouter(NonHocCommentCard)
+export default compose(
+  withRouter,
+  connect(null, { deleteComment }),
+)(NonHocCommentCard)
