@@ -11,36 +11,40 @@ export class UnconnectedPostDetail extends React.Component {
   render() {
     return this.props.post 
     ? (
-      <div data-test="component-post-detail">
+      <div data-test="component-post-detail" style={{ padding: 20 }}>
         <Row>
-          <Col span={12}>
-            <h3 data-test="post-title">{this.props.post.title}</h3>
+          <Col>
+            <h1 data-test="post-title">{this.props.post.title}</h1>
           </Col>
         </Row>
-        <Row>
-          <Col span={12}>
-            <p data-test="post-body">{this.props.post.body}</p>
+        <Row style={{ marginBottom: 30 }}>
+          <Col>
+            <h3 data-test="post-body">{this.props.post.body}</h3>
           </Col>
         </Row>
 
-        <h4>Comments:</h4>
+        <h3>Comments:</h3>
         <CommenList 
           data-test="post-comments" 
-          postId={this.props.match.params.id}
+          postId={parseInt(this.props.match.params.id)}
         />
 
-        <Row type="flex" justify="end">
-          <Col span={8}>
+        <Row style={{ marginTop: 20 }}>
+          <Col span={2}>
             <Button 
               type="primary"
               data-test="edit-post-button"
-            />
+            >
+              Edit Post
+            </Button>
           </Col>
-          <Col span={8}>
+          <Col span={2}>
             <Button 
               type="default"
               data-test="add-comment-button"
-            />
+            >
+              Add Comment
+            </Button>
           </Col>
         </Row>
       </div>

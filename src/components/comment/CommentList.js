@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Row, Col } from 'antd';
 import CommentCard from './CommentCard'
 import { getPostComments, deleteComment } from '../../store/actions/commentActions'
 

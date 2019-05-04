@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 export class NonHocCommentCard extends React.Component {
   render() {
     return (
-      <Card data-test="component-comment-card">
+      <Card data-test="component-comment-card" style={{ marginBottom: 10 }}>
         <Row>
           <Col span={8}>
             <h3 data-test="comment-name">
