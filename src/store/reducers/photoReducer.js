@@ -7,6 +7,11 @@ export default (state={}, action) => {
         ...state,
         photoList: action.payload
       }
+    case actionTypes.SET_PHOTO_DETAIL:
+      return {
+        ...state,
+        photoDetail: action.payload
+      }
     default:
       return state
   }
