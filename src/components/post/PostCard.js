@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Card, Icon, Tooltip } from 'antd'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { deletePost } from '../../store/actions/postActions'
 
 export class NonHocPostCard extends React.Component {
   handleViewDetailPostClick = () => {
@@ -63,7 +66,9 @@ NonHocPostCard.propTypes = {
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
   }).isRequired,
-  deletePost: PropTypes.func,
 }
 
-export default withRouter(NonHocPostCard)
+export default compose(
+  withRouter,
+  connect(null, { deletePost })
+)(NonHocPostCard)
