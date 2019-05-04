@@ -42,3 +42,24 @@ export const getCommentDetail = (commentId) => {
       })
   }
 }
+
+export const addComment = (newComment) => {
+  return (dispatch, getState) => {
+    return axios.post(`https://jsonplaceholder.typicode.com/comments/`, newComment, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.status === 200) {
+        dispatch({
+          type: actionTypes.SET_POST_COMMENTS,
+          payload: [
+            ...getState().comment.commentList,
+            response.data,
+          ]
+        })
+      }
+    })
+  }
+}
