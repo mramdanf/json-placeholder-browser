@@ -2,7 +2,7 @@ import moxios from 'moxios'
 
 import { storeFactory } from '../../appUtils'
 import { 
-  getUserPosts, deletePost, getPostDetail, addPost
+  getUserPosts, deletePost, getPostDetail, addPost, editPost
 } from './postActions'
 import actionTypes from './actionTypes';
 
@@ -120,6 +120,33 @@ describe('post action creator', () => {
       .then(() => {
         const newState = store.getState()
         expect(newState.post.postList).toEqual(newPostList)
+      })
+  })
+  test('edit post', () => {
+    const newPost = {
+      userId: 10,
+      id: 2,
+      title: "dan abramov sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "dan abramov quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+    }
+
+    store.dispatch({
+      type: actionTypes.SET_USER_POSTS,
+      payload: postList,
+    })
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: newPost
+      })
+    })
+    return store.dispatch(editPost(newPost, newPost.id))
+      .then(() => {
+        const newState = store.getState()
+        const updatedPost = newState.post.postList.find(post => post.id === newPost.id)
+        expect(updatedPost).toEqual(newPost)
       })
   })
 })

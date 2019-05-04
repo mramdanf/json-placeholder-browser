@@ -62,3 +62,21 @@ export const addPost = (post) => {
     })
   }
 }
+
+export const editPost = (post, postId) => {
+  return (dispatch, getState) => {
+    return axios.put(`https://jsonplaceholder.typicode.com/posts/${postId}`, post)
+      .then(response => {
+        if (response.status === 200) {
+          const newPostList = [
+            ...getState().post.postList.filter(post => post.id !== postId),
+            response.data,
+          ]
+          dispatch({
+            type: actionTypes.SET_USER_POSTS,
+            payload: newPostList,
+          })
+        }
+      })
+  }
+}
