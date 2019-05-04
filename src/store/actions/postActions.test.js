@@ -1,7 +1,9 @@
 import moxios from 'moxios'
 
 import { storeFactory } from '../../appUtils'
-import { getUserPosts, deletePost, getPostDetail } from './postActions'
+import { 
+  getUserPosts, deletePost, getPostDetail, addPost
+} from './postActions'
 import actionTypes from './actionTypes';
 
 describe('post action creator', () => {
@@ -44,6 +46,26 @@ describe('post action creator', () => {
         expect(newState.post.postList).toBe(postList)
       })
   })
+  test('add response postDetail to state when getPostDetail action creator called', () => {
+    const postDetail = {
+      userId: 1,
+      id: 1,
+      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+    }
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: postDetail
+      })
+    })
+    return store.dispatch(getPostDetail(postDetail.id))
+      .then(response => {
+        const newState = store.getState()
+        expect(newState.post.postDetail).toEqual(postDetail)
+      })
+  })
   test('delete single post', () => {
     const deletedPostId = 1
     let newPostList = postList.filter(post => post.id !== deletedPostId)
@@ -68,24 +90,36 @@ describe('post action creator', () => {
         expect(newState.post.postList).toEqual(newPostList)
       })
   })
-  test('add response postDetail to state when getPostDetail action creator called', () => {
-    const postDetail = {
+  test('add single post', () => {
+    const newPost = {
       userId: 1,
-      id: 1,
-      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-      body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+      id: 3,
+      title: "ramdan sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "ramdan quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
     }
+
+    store.dispatch({
+      type: actionTypes.SET_USER_POSTS,
+      payload: postList
+    })
+
+    const newPostList = [
+      ...postList,
+      newPost
+    ]
+    
     moxios.wait(() => {
       const request = moxios.requests.mostRecent()
       request.respondWith({
         status: 200,
-        response: postDetail
+        response: {}
       })
     })
-    return store.dispatch(getPostDetail(postDetail.id))
-      .then(response => {
+
+    return store.dispatch(addPost(newPost))
+      .then(() => {
         const newState = store.getState()
-        expect(newState.post.postDetail).toEqual(postDetail)
+        expect(newState.post.postList).toEqual(newPostList)
       })
   })
 })

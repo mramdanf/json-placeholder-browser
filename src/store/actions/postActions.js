@@ -40,3 +40,25 @@ export const getPostDetail = (postId) => {
       })
   }
 }
+
+export const addPost = (post) => {
+  return (dispatch, getState) => {
+    return axios.post('https://jsonplaceholder.typicode.com/posts', post, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.status === 200) {
+        const newPostList = [
+          ...getState().post.postList,
+          post
+        ]
+        dispatch({
+          type: actionTypes.SET_USER_POSTS,
+          payload: newPostList,
+        })
+      }
+    })
+  }
+}
