@@ -30,3 +30,15 @@ export const deleteComment = (commentId) => {
       })
   }
 }
+
+export const getCommentDetail = (commentId) => {
+  return (dispatch) => {
+    return axios.get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+      .then(response => {
+        dispatch({
+          type: actionTypes.SET_COMMENT_DETAIL,
+          payload: response.data,
+        })
+      })
+  }
+}

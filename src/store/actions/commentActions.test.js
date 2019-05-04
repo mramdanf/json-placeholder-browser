@@ -1,7 +1,7 @@
 import moxios from 'moxios'
 
 import { storeFactory } from '../../appUtils'
-import { getPostComments, deleteComment } from './commentActions'
+import { getPostComments, deleteComment, getCommentDetail } from './commentActions'
 import actionTypes from './actionTypes';
 
 describe('comment action creator', () => {
@@ -68,6 +68,27 @@ describe('comment action creator', () => {
       .then(() => {
         const newState = store.getState()
         expect(newState.comment.commentList).toEqual(newCommentList)
+      })
+  })
+  test('get comment detail', () => {
+    const commentDetail = {
+      postId: 1,
+      id: 1,
+      name: "id labore ex et quam laborum",
+      email: "Eliseo@gardner.biz",
+      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium"
+    }
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: commentDetail
+      })
+    })
+    return store.dispatch(getCommentDetail(commentDetail.id))
+      .then(() => {
+        const newState = store.getState()
+        expect(newState.comment.commentDetail).toEqual(commentDetail)
       })
   })
 })
