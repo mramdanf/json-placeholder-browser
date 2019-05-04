@@ -28,3 +28,15 @@ export const deletePost = (postId) => {
       })
   }
 }
+
+export const getPostDetail = (postId) => {
+  return (dispatch) => {
+    return axios.get(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+      .then(response => {
+        dispatch({
+          type: actionTypes.SET_POST_DETAIL,
+          payload: response.data,
+        })
+      })
+  }
+}

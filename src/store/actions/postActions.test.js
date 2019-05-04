@@ -1,7 +1,7 @@
 import moxios from 'moxios'
 
 import { storeFactory } from '../../appUtils'
-import { getUserPosts, deletePost } from './postActions'
+import { getUserPosts, deletePost, getPostDetail } from './postActions'
 import actionTypes from './actionTypes';
 
 describe('post action creator', () => {
@@ -66,6 +66,26 @@ describe('post action creator', () => {
       .then(() => {
         const newState = store.getState()
         expect(newState.post.postList).toEqual(newPostList)
+      })
+  })
+  test('add response postDetail to state when getPostDetail action creator called', () => {
+    const postDetail = {
+      userId: 1,
+      id: 1,
+      title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+    }
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
+        status: 200,
+        response: postDetail
+      })
+    })
+    return store.dispatch(getPostDetail(postDetail.id))
+      .then(response => {
+        const newState = store.getState()
+        expect(newState.post.postDetail).toEqual(postDetail)
       })
   })
 })
