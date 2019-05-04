@@ -34,6 +34,11 @@ export class UnconnectedPostDetail extends React.Component {
             <Button 
               type="primary"
               data-test="edit-post-button"
+              onClick={
+                () => {
+                  this.props.history.push(`/edit-post/${this.props.match.params.id}`)
+                }
+              }
             >
               Edit Post
             </Button>
@@ -42,6 +47,11 @@ export class UnconnectedPostDetail extends React.Component {
             <Button 
               type="default"
               data-test="add-comment-button"
+              onClick={
+                () => {
+                  this.props.history.push(`/add-comment/${this.props.post.id}`)
+                }
+              }
             >
               Add Comment
             </Button>
