@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, Row, Col } from 'antd'
-import { Button } from 'antd/lib/radio';
+import { Card, Row, Col, Button, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 
 export class NonHocCommentCard extends React.Component {
@@ -9,27 +8,26 @@ export class NonHocCommentCard extends React.Component {
     return (
       <Card data-test="component-comment-card">
         <Row>
-          <Col
-            data-test="comment-name"
-            span={8}
-          >
-            {this.props.comment.name}
+          <Col span={8}>
+            <h3 data-test="comment-name">
+              <Icon type="user" /> {this.props.comment.name}
+            </h3>
           </Col>
           <Col
             data-test="comment-email"
             span={8}
             offset={8}
           >
-            {this.props.comment.email}
+            <h4><Icon type="mail" /> {this.props.comment.email}</h4>
           </Col>
         </Row>
         <Row>
-          <Col data-test="comment-body">
-            {this.props.comment.body}
+          <Col>
+            <p data-test="comment-body">{this.props.comment.body}</p>
           </Col>
         </Row>
-        <Row type="flex" justify="end">
-          <Col span={4}>
+        <Row>
+          <Col span={1} style={{ marginRight: 10 }}>
             <Button 
               data-test="edit-comment-button"
               type="primary"
@@ -40,7 +38,7 @@ export class NonHocCommentCard extends React.Component {
               }
             >Edit</Button>
           </Col>
-          <Col span={4}>
+          <Col span={1}>
             <Button 
               data-test="delete-comment-button"
               type="danger"

@@ -15,17 +15,14 @@ export class UnconnectedCommentList extends React.Component {
   render() {
     return (
       <div data-test="component-comment-list">
-        <Row>
-          { this.props.comments && this.props.comments.map(comment => (
-              <Col span={12} key={comment.id}>
-                <CommentCard 
-                  data-test="comment-card"
-                  comment={comment}
-                  deleteComment={this.handleDeleteCommentClick}
-                />
-              </Col>
-          )) }
-        </Row>
+        { this.props.comments && this.props.comments.map(comment => (
+          <CommentCard 
+            data-test="comment-card"
+            comment={comment}
+            deleteComment={this.handleDeleteCommentClick}
+            key={comment.id}
+          />
+        )) }
       </div>
     )
   }
