@@ -6,6 +6,7 @@ import AlbumList from './components/album/AlbumList'
 import PhotoList from './components/photo/PhotoList'
 import PhotoDetail from './components/photo/PhotoDetail'
 import PostDetail from './components/post/PostDetail'
+import PostForm from './components/post/PostForm'
 import './App.css';
 
 class App extends Component {
@@ -19,6 +20,8 @@ class App extends Component {
           <Route path='/album-photos/:id' component={PhotoList} />
           <Route path='/photo-detail/:id' component={PhotoDetail} />
           <Route path='/post-detail/:id' component={PostDetail} />
+          <Route path='/add-post' component={PostForm} />
+          <Route path='/edit-post/:id' component={PostForm} />
         </Switch>
       </BrowserRouter>
     );

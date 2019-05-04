@@ -37,10 +37,13 @@ describe('renders', () => {
     const postCardNodes = findByTestAttr(wrapper, 'post-card')
     expect(postCardNodes.length).toBe(postList.length)
   })
+  test('renders add post button', () => {
+    const addPostBtn = findByTestAttr(wrapper, 'add-post-button')
+    expect(addPostBtn.text().length).not.toBe(0)
+  })
 })
 test('calls `getUserPosts` on app mount with userId as arguments', () => {
   const getUserPostsMock = jest.fn()
-  const userId = 1
   const props = {
     getUserPosts: getUserPostsMock,
     postList,
@@ -51,4 +54,16 @@ test('calls `getUserPosts` on app mount with userId as arguments', () => {
   wrapper.instance().componentDidMount()
 
   expect(getUserPostsMock.mock.calls[0][0]).toBe(props.match.params.id)
+})
+test('go to add post page when add post button clicked', () => {
+  const props = {
+    history: []
+  }
+  const wrapper = shallow(<UnConnectedPostList {...props} />)
+
+  const addPostBtn = findByTestAttr(wrapper, 'add-post-button')
+  addPostBtn.simulate('click')
+
+  expect(props.history[0]).toBe('/add-post')
+
 })

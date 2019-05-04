@@ -51,6 +51,14 @@ describe('renders', () => {
     })
     expect(deletePostBtn).not.toBe(undefined)
   })
+  test('renders edit post button', () => {
+    const componentPostCard = findByTestAttr(wrapper, 'component-post-card')
+    const actionDomProp = componentPostCard.prop('actions')
+    const editPostBtn = actionDomProp.find(item => {
+      return item.props.children.props['data-test'] === 'edit-post-button'
+    })
+    expect(editPostBtn).not.toBe(undefined)
+  })
 })
 test('does not throw warning with expected props', () => {
   checkProps(PostCard, defaultProps)
@@ -69,7 +77,7 @@ test('calls `viewDetailPost` with non-empty arguments when view detail post butt
   viewDetailPostBtn.props.children.props['onClick']()
 
   const receivedHistoryProps = wrapper.instance().props.history[0]
-  expect(receivedHistoryProps).toBe(`post-detail/${defaultProps.post.id}`)
+  expect(receivedHistoryProps).toBe(`/post-detail/${defaultProps.post.id}`)
 })
 test('calls `deletePost` with postId argument when delete post button clicked', () => {
   const deletePostMock = jest.fn()
@@ -89,4 +97,20 @@ test('calls `deletePost` with postId argument when delete post button clicked', 
 
   expect(deletePostMock.mock.calls[0][0]).toBe(defaultProps.post.id)
   
+})
+test('go to edit post page when edit post button clicked', () => {
+  const props = {
+    history: []
+  }
+  const wrapper = setup(props)
+  
+  const postUserCard = findByTestAttr(wrapper, 'component-post-card')
+  const actions = postUserCard.prop('actions')
+  const editPostBtn = actions.find(item => {
+    return item.props.children.props['data-test'] == 'edit-post-button'
+  })
+  editPostBtn.props.children.props['onClick']()
+
+  const receivedHistoryProps = wrapper.instance().props.history[0]
+  expect(receivedHistoryProps).toBe(`/edit-post/${defaultProps.post.id}`)
 })

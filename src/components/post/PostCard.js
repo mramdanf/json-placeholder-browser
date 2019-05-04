@@ -10,6 +10,9 @@ export class NonHocPostCard extends React.Component {
   handleViewDetailPostClick = () => {
     this.props.history.push(`/post-detail/${this.props.post.id}`)
   }
+  handleEditPostClick = () => {
+    this.props.history.push(`/edit-post/${this.props.post.id}`)
+  }
   handleDeletePostClick = () => {
     this.props.deletePost(this.props.post.id)
   }
@@ -28,6 +31,16 @@ export class NonHocPostCard extends React.Component {
                 type="eye" 
                 data-test="view-detail-post-button"
                 onClick={this.handleViewDetailPostClick}
+              />
+            </Tooltip>,
+            <Tooltip 
+              placement="top" 
+              title="Edit Post"
+            >
+              <Icon 
+                type="edit" 
+                data-test="edit-post-button"
+                onClick={this.handleEditPostClick}
               />
             </Tooltip>,
             <Tooltip 
