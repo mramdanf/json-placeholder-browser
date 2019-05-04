@@ -27,3 +27,17 @@ test('returns { postList: [...] } when receiving an action of type `SET_USER_POS
   const newState = postReducer(undefined, action)
   expect(newState.postList).toEqual(postList)
 })
+test('returns postDetail when receiving an action of type `SET_POST_DETAIL`', () => {
+  const postDetail = {
+    userId: 1,
+    id: 1,
+    title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto"
+  }
+  const action = {
+    type: actionTypes.SET_POST_DETAIL,
+    payload: postDetail,
+  }
+  const newState = postReducer(undefined, action)
+  expect(newState).toEqual({ postDetail })
+})

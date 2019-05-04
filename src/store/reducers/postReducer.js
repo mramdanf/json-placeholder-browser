@@ -5,7 +5,12 @@ export default (state={}, action) => {
     case actionTypes.SET_USER_POSTS:
       return {
         ...state,
-        postList: action.payload
+        postList: action.payload,
+      }
+    case actionTypes.SET_POST_DETAIL:
+      return {
+        ...state,
+        postDetail: action.payload,
       }
     default:
       return state
