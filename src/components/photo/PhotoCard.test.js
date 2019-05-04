@@ -60,5 +60,5 @@ test('calls photo detail pages when view detail photo button clicked', () => {
   ))
   viewPhotoDetailBtn.props.children.props['onClick']()
 
-  expect(wrapper.instance().props.history[0]).toBe(`photo-detail/${defaultProps.photo.id}`)
+  expect(wrapper.instance().props.history[0]).toBe(`/photo-detail/${defaultProps.photo.id}`)
 })

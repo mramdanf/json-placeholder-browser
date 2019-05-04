@@ -54,6 +54,6 @@ test('go to photos page when photos of album clicked', () => {
   })
   photosOfAlbumBtn.props.children.props['onClick']()
 
-  expect(wrapper.instance().props.history[0]).toBe(`photos/${defaultProps.album.id}`)
+  expect(wrapper.instance().props.history[0]).toBe(`/album-photos/${defaultProps.album.id}`)
 
 })
