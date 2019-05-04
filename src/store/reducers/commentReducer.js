@@ -7,6 +7,11 @@ export default (state={}, action) => {
         ...state,
         commentList: action.payload,
       }
+    case actionTypes.SET_COMMENT_DETAIL:
+      return {
+        ...state,
+        commentDetail: action.payload,
+      }
     default:
       return state
   }

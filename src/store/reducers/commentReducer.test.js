@@ -29,3 +29,18 @@ test('returns { commentList: [...] } when receiving action of type `SET_POST_COM
   const newState = commectReducer(undefined, action)
   expect(newState).toEqual({ commentList })
 })
+test('returns { commentDetail: {...} } when receiving action of type `SET_COMMENT_DETAIL`', () => {
+  const commentDetail = {
+    postId: 1,
+    id: 1,
+    name: "id labore ex et quam laborum",
+    email: "Eliseo@gardner.biz",
+    body: "laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo necessitatibus dolor quam autem quasi reiciendis et nam sapiente accusantium"
+  }
+  const action = {
+    type: actionTypes.SET_COMMENT_DETAIL,
+    payload: commentDetail,
+  }
+  const newState = commectReducer(undefined, action)
+  expect(newState.commentDetail).toEqual(commentDetail)
+})
