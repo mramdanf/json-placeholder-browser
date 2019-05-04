@@ -12,3 +12,15 @@ export const getAlbumPhotos = (albumId) => {
       })
   }
 }
+
+export const getPhotoDetail = (photoId) => {
+  return (dispatch) => {
+    return axios.get(`https://jsonplaceholder.typicode.com/photos/${photoId}`)
+      .then(response => {
+        dispatch({
+          type: actionTypes.SET_PHOTO_DETAIL,
+          payload: response.data
+        })
+      })
+  }
+}
