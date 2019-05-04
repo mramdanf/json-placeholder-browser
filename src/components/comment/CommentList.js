@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Spin, Row, Col } from 'antd'
 import PropTypes from 'prop-types'
 import CommentCard from './CommentCard'
 import { getPostComments } from '../../store/actions/commentActions'
@@ -11,6 +12,17 @@ export class UnconnectedCommentList extends React.Component {
   render() {
     return (
       <div data-test="component-comment-list">
+        { !this.props.comments 
+          ? (
+            <Row type="flex" justify="center">
+              <Col>
+                <Spin size="large" />
+              </Col>
+            </Row>
+          )
+          : null 
+        }
+        
         { this.props.comments && this.props.comments.map(comment => (
           <CommentCard 
             data-test="comment-card"

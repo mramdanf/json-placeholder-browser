@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Spin } from 'antd';
 import CommenList from '../comment/CommentList'
 import { getPostDetail } from '../../store/actions/postActions'
 
@@ -60,7 +60,11 @@ export class UnconnectedPostDetail extends React.Component {
       </div>
     )
     : (
-      <div></div>
+      <Row type="flex" justify="center" style={{ padding: 30 }}>
+        <Col>
+          <Spin size="large" />
+        </Col>
+      </Row>
     )
   }
 }

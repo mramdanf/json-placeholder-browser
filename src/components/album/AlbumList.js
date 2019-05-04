@@ -12,13 +12,19 @@ export class UnconnectedAlbumList extends React.Component {
     return (
       <div
         data-test="component-album-list"
-        style={{ background: '#ECECEC', padding: '30px' }}
+        style={
+          this.props.albumList 
+            ? { background: '#ECECEC', padding: '30px' }
+            : { padding: '30px' }
+        }
       >
-        <Row gutter={16}>
+        <h1 style={{ padding: 20 }}>Album List</h1>
+        <Row type="flex" gutter={16}>
           { this.props.albumList && this.props.albumList.map(album => (
             <Col 
               span={8} 
               key={album.id}
+              style={{ padding: 10 }}
             >
               <AlbumCard
                 data-test="album-card"

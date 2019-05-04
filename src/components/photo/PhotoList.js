@@ -12,13 +12,19 @@ export class UnconnectedPhotoList extends React.Component {
     return (
       <div
         data-test="component-photo-list"
-        style={{ background: '#ECECEC', padding: '30px' }}
+        style={
+          this.props.photoList 
+            ? { background: '#ECECEC', padding: '30px' }
+            : { padding: '30px' }
+        }
       >
-        <Row gutter={16}>
+        <h1 style={{ marginBottom: 20 }}>Photo List</h1>
+        <Row type="flex" gutter={16}>
           { this.props.photoList && this.props.photoList.map(photo => (
             <Col 
               span={8} 
               key={photo.id}
+              style={{ marginBottom: 10 }}
             >
               <PhotoCard
                 data-test="photo-card"

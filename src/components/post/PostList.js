@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, Spin } from 'antd'
 
 import PostCard from './PostCard'
 import { getUserPosts } from '../../store/actions/postActions'
@@ -13,13 +13,31 @@ export class UnConnectedPostList extends React.Component {
     return (
       <div 
         data-test="component-post-list"
-        style={{ background: '#ECECEC', padding: '30px' }}
+        style={
+          this.props.postList 
+            ? { background: '#ECECEC', padding: '30px' }
+            : { padding: '30px' }
+        }
       >
-        <Row gutter={16} style={{ marginBottom: 20 }}>
+        <h1 style={{ marginBottom: 20 }}>Post List</h1>
+
+        { !this.props.postList 
+          ? (
+            <Row type="flex" justify="center">
+              <Col>
+                <Spin size="large" />
+              </Col>
+            </Row>
+          )
+          : null 
+        }
+
+        <Row type="flex" gutter={16} style={{ marginBottom: 20 }}>
           { this.props.postList && this.props.postList.map(post => (
             <Col 
               span={8} 
               key={post.id}
+              style={{ marginBottom: 20 }}
             >
               <PostCard 
                 post={post}
